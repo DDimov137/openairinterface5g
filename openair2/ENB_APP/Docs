@@ -1,0 +1,21 @@
+                                                             L1_paramdef.h 
+This header file defines the gNB L1 configuration schema by declaring string keys (CONFIG_STRING_*), a parameter descriptor table (L1PARAMS_DESC) 
+with types and default values and numeric index macros for each option. 
+At runtime the option parser uses this table to register and provide parsed values (accessed by those indices) that control L1 behavior like 
+network addresses, DTX thresholds, OFDM timing, and LDPC iteration limits.
+
+  Key parameters are :
+  1.num_cc(CONFIG_STRING_L1_CC,default 1) stands for the number of component carriers. By increasing num_cc raises peak throughput 
+  but also increases CPU load, memory use, scheduling complexity and RF/resource management overhead.Crutial for the performance is to set the
+  value in such way which would not overload the hardware. 
+
+  2.max_ldpc_iterations(CONFIG_STRING_L1_MAX_LDPC_ITERATIONS,default 5) controls the upper limit on LDPC decoder iterations.By regulating the 
+  parameter the error rate(BLER) can be controlled which will result in more CPU usage. 
+
+  3.ofdm_offset_divisor(CONFIG_STRING_L1_OFDM_OFFSET_DIVISOR,default 8) servers for control of the OFDM timing/offset scalling which is used by PHY.
+
+  4.Thread-pool(CONFIG_STRING_L1_THREAD_POOL_SIZE entry) sets the number of threads available for L1 tasks.
+
+  5.DTX thresholds (PUCCH0, PRACH, PUSCH) control decision t 
+
+  6. transport preference / local remote addresses and ports (tr_n_preference, local_n_address, remote_n_address, local_n_portc/portd)
